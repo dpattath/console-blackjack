@@ -134,9 +134,10 @@ while balance:
         player_val = max_hand_value(player)
 
     #dealer hits until he busts
-    while dealer_val < 16:
+    while dealer_val < 17:
         dealer.append(card())
-        dealer_val = hand_value(dealer)
+        max_val = max_hand_value(dealer)
+        dealer_val = max_val if max_val < 21 else hand_value(dealer)
     
     print("The dealer's cards are: ")
     print(dealer)
