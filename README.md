@@ -19,3 +19,9 @@ I didn't require any extensive data structure usages, most of the logic was tran
 I would like to go into the deeper features of blackjack, specifically splitting pairs, doubling down, and insurance. Finer details such as the actual randomization of cards could be slightly different if we followed the six deck style many casinos use.
 
 I would like to ideally have this as a multiplayer game so that multiple people could go against the dealer on their own.
+
+# Testing
+
+The code written was very procecdural and as result, fairly difficult to test. I did some manual testing with a separate debug file where I had the main loop in a function with parameters to put in the dealer's cards and the player's cards. In addition, I played a few games myself and had friends try a few games to see edge cases. 
+
+Many issues I noticed were related to dealing with aces and making sure the dealer's behavior made sense with the player's forced decisions.
