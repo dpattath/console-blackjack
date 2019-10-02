@@ -15,6 +15,7 @@ balance = 100
 print("We'll start with $" + str(balance) + " and you can bet either $5, $10, $25, or $100 each round")
 starting_values = [5, 10, 25, 100]
 
+#dict of cards with their value
 cards = {
     "J" : 10,
     "Q" : 10,
@@ -24,9 +25,11 @@ cards = {
 for i in range(2, 11):
     cards[str(i)] = i
 
+#returns a randomly selected card
 def card():
     return random.choice(list(cards.keys()))
 
+#determines value of hand assuming aces are worth 1
 def hand_value(hand):
     val = 0
     for card in hand:
@@ -35,15 +38,18 @@ def hand_value(hand):
         return 21
     return val
 
+#finds the maximum hand value
 def max_hand_value(hand):
     val = hand_value(hand)
     if "A" in hand:
         val += 10
     return val
 
+#blackjack check
 def blackjack(value):
     return value == 21
 
+#checks if player or dealer has gone over/busted
 def over(value):
     return value > 21
 
@@ -97,6 +103,7 @@ while balance:
             balance += int(1.5 * bet_value)
             continue
     
+    #this is the sequence where the player can choose to hit for more cards
     while not over(player_val):
         while True:
             try:
@@ -117,13 +124,16 @@ while balance:
             print(player)
             player_val = hand_value(player)
 
+    #this is to indicate whether the player has busted or not
     if over(player_val):
         print("Sorry, looks like you busted, better luck next time!")
         continue
 
+    #this checks the case of 21 as a result of an ace
     if not over(max_hand_value(player)):
         player_val = max_hand_value(player)
 
+    #dealer hits until he busts
     while dealer_val < 16:
         dealer.append(card())
         dealer_val = hand_value(dealer)
@@ -131,6 +141,7 @@ while balance:
     print("The dealer's cards are: ")
     print(dealer)
 
+    #results of the game
     if over(dealer_val) or player_val > dealer_val:
         print("You win this hand!")
         balance += bet_value * 2
@@ -140,4 +151,5 @@ while balance:
     else:
         print("Sorry, looks like you lost, better luck next time!")
 
+#this is when you reach $0
 print("Hope you had fun playing!")
